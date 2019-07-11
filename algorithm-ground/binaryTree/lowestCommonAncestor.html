@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const lowestCommonAncestor = function(root,p,q){
+            var count = 0;
+            while(true){
+                var value = root.val;
+                if(p.val >= value && value >= q.val || p.val <= value && value <= q.val){
+                    return root;
+                }else if(p.val > value && q.val > value){
+                    root = root.right;
+                }else{
+                    root = root.left;
+                }
+            }
+        }
+    
+    </script>
+</body>
+</html>

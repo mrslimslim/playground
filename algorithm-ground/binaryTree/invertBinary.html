@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const invertBinaryTree = function(root){
+            // 
+            if(root === null || (root.right === null && root.left === null) ){
+                return root;
+            }
+            // 左节点为本来的右节点
+            var temp = root.left;
+            root.left = invertBinaryTree(root.right);
+            root.right = invertBinaryTree(temp);
+            return root;
+        }
+    </script>
+</body>
+</html>

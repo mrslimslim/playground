@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const randomArr = function(num, start, end){
+            let arr = [];
+            for(let i = 0; i < num; i++){
+                let randomNum = Math.round(start + Math.random() * (end - start));
+                arr.push(randomNum);
+            }
+            return arr;
+        }
+
+        const arr1 = randomArr(5,1,9);
+        const arr2 = randomArr(5,1,9);
+
+        const intersect = (nums1,nums2) => {
+            const map = {}
+            const res = []
+            for(let n of nums1){
+                if(map[n]){
+                    map[n]++
+                }else{
+                    map[n] = 1
+                }
+            }
+
+            for(let n of nums2){
+                if(map[n] > 0){
+                    res.push(n);
+                    map[n]--;
+                }
+            }
+            return res;
+        }
+        console.log(arr1);
+        console.log(arr2);
+        console.log(intersect(arr1,arr2));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const curry = function(fn){
+            // 形
+            const pLength = fn.length;
+            const pArr = [];
+            var func = function(...arg){
+                // this => 
+                console.log(pArr)
+                if(pArr.length < pLength ){
+                    pArr.push(...arg);
+                    return func;
+                }else{
+                    return fn(...pArr);
+                }
+            };
+            return func;
+        }
+
+        const sum = (a,b)=>{
+            return a + b;
+        }
+        const currySum =  curry(sum);
+        const sumValue = currySum(1)(2)();
+        console.log(sumValue);
+
+
+        const curry2 = function(fn){
+            //
+            const length = fn.length;
+            var next2 = function (args, length){
+                if(!length){
+                    return fn(...args);
+                }else{
+                    return (arg)=> {
+                        console.log(args,arg);
+                        return next2([...args, arg], length - 1);
+                    };
+                }
+            };
+            return next2([], length);
+        }
+        let currySum2 = curry2(sum);
+        let sumValue2 = currySum2(1)(2);
+        console.log(sumValue2)
+    </script>
+</body>
+</html>

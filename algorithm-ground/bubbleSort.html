@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const bubbleSort = function(arr) {
+            for(let i = 0; i < arr.length; i++){
+                // 每次已知最后一个是最大的 所以 - i -1
+                for(let j = 0; j < arr.length - i - 1; j++){
+                    if( arr[j] > arr[j+1] ){
+                        // 交换位置
+                        let tmpArr = [arr[j], arr[j+1]];
+                        arr[j] = tmpArr[1];
+                        arr[j+1] = tmpArr[0];
+                        tmpArr = null;
+                    }
+                }
+            }
+            return arr;
+        }
+        // 验证
+        const res1 = bubbleSort([1,2,3,4,5,6,7]);
+        console.log(res1);
+        const res2 = bubbleSort([2,1,3,4,5,6,7]);
+        console.log(res2);
+        const res3 = bubbleSort([7,9,2,1,3,4,5,6]);
+        console.log(res3);
+    </script>
+    <script>
+        const bubbleSort2 = function(arr) {
+            const len = arr.length;
+            for(let i = 0; i < len; i++){
+                for(let j = 0; j < len - i - 1 ;j++){
+                    if(arr[j] > arr[j+1]) {
+                        let tmpArr = [arr[j],arr[j+1]];
+                        arr[j] = tmpArr[1];
+                        arr[j+1] = tmpArr[0];
+                        tmpArr = null;
+                    }
+                }
+            }
+            return arr;
+        }
+    </script>
+</body>
+</html>

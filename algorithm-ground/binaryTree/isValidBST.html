@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const isValidBSTWrapper = function(){
+            let pre = 0;
+            function isValidBST(root){
+                if(root == null){
+                    return true;
+                }
+                // 中序遍历 是左 -> 中 -> 右
+                const left = isValidBST(root.left);
+                const mid = pre >= root.val ? false : true;
+                // pre 是之前的一个 root.val
+                pre = root.val;
+                const right = isValidBST(root.right);
+                return left && mid && right;
+            }
+            return isValidBST;
+        }
+
+        const isValidBST = isValidBSTWrapper();
+    </script>
+</body>
+</html>
