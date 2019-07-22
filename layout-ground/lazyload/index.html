@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lazy load</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .images-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            height: 2000px;
+        }
+        .images-wrapper div{
+            width: 40%;
+        }
+        .images-wrapper img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="images-wrapper">
+        <div><img src="default.jpg" data-src="01.jpeg" alt=""></div>
+        <div><img src="default.jpg" data-src="02.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="03.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="04.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="05.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="06.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="05.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="04.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="03.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="01.jpg" alt=""></div>
+        <div><img src="default.jpg" data-src="02.jpg" alt=""></div>
+    </div>
+    <script>
+        var images = document.querySelectorAll('img');
+        var num = images.length;
+        var n = 0;
+        window.onscroll = lazyload;
+        function lazyload(){
+            var firstViewHeight = document.documentElement.clientHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const totalHeight = scrollTop + firstViewHeight;
+            console.log(totalHeight);
+            for(i = n; i < num; i++){
+                console.log(images[i].getBoundingClientRect().top, totalHeight)
+                if(images[i].getBoundingClientRect().top < totalHeight){
+                    // console.log('top',images[i].getBoundingClientRect().top);
+                    if(images[i].getAttribute('src') == 'default.jpg'){
+                        images[i].src = images[i].getAttribute('data-src');
+                    }
+                    n = i + 1
+                }
+                console.log(n);
+            }
+        }
+
+    </script>
+</body>
+</html>

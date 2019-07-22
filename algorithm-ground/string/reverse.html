@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const reverseString = function(str) {
+            let res = '';
+            for(let i = str.length - 1; i >= 0; i-- ){
+                let word = str[i];
+                res += word;
+            }
+            return res;
+        }
+        // console.log(reverseString('hello'));
+    
+        const betterReverseString = function(str){
+            const ary = str.split('');
+            for(let i = 0 , max = ary.length / 2; i < max; i++){
+                var tmp = ary[i];
+                // 如何需找另一端
+                console.log(i);
+                ary[i] = ary[ary.length - i - 1];
+                ary[ary.length - i - 1] = tmp;
+            }
+            return ary.join('');
+        }
+        console.log(betterReverseString('hello'));
+    </script>
+</body>
+</html>

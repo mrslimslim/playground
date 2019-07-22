@@ -1,0 +1,76 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const info = [
+            {
+                id: '湖北省',
+                children:[
+                    {
+                        id: '仙桃市',
+                        children: [
+                            {
+                                id: '彭场镇'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+        // =>  
+
+        function getInfo(arr) {
+            const root = [];
+            // [{},{}]
+            let loopList = [
+                {
+                    parent: root,
+                    data: arr
+                }
+            ];
+            while(loopList.length){
+                const node = loopList.pop();
+                const parent = node.parent;
+                const key = node.key;
+                const data = node.data;
+
+                let res = parent;
+                if(key){
+                    res = {};
+                    res.children = [];
+                    parent.push(res);
+                }
+                // console.log(data);
+                for(let i = 0; i < data.length; i++){
+                    let item = data[i];
+                    if(item.children){
+                        loopList.push({
+                            parent: res, // [{},{}]
+                            key:true,
+                            data: item.children
+                        })
+                    }else{
+                        // res.push({id:item.id});
+                        // res.push({id:item.id})
+                        // res.id = item.id;
+                    }
+                    //res.id = item.id;
+                    res.push({
+                        id:item.id
+                    })
+                }
+            }
+            return root;
+        }
+        
+        getInfo(info);
+
+    </script>
+</body>
+</html> -->

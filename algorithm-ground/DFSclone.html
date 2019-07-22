@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function cloneForce(arr){
+            const uniqueList = [];
+            let root = {};
+
+            const loopList = [
+                {
+                    parent: root,
+                    key: undefined,
+                    data: arr
+                }
+            ];
+
+            while(loopList.length) {
+                const node = loopList.pop();
+                const parent = node.parent;
+                const key = node.key;
+                const data = node.data;
+
+                let res = parent;
+                if(typeof key !== 'undefined'){
+                    res = parent[key] = {};
+                }
+
+                for(let k in data){
+                    if(data.hasOwnProperty(k)){
+                        console.log(data, k);
+                        if(typeof data[k] === 'object'){
+                            loopList.push({
+                                parent: res,
+                                key: k,
+                                data: data[k]
+                            })
+                        }else{
+                            res[k] = data[k];
+                        }
+                    }
+                }
+            }
+
+            return root;
+        }
+        const obj = {info:{sex:'girl',age:12},name:'josn'};
+        console.log(cloneForce(obj));
+    </script>
+</body>
+</html>

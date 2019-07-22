@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Stack(){
+            this.space = [];
+        }
+
+        Stack.prototype = {
+            constructor: Stack
+        }
+
+        Stack.prototype.push = function(value){
+            return this.space.push(value);
+        }
+
+        Stack.prototype.pop = function(){
+            return this.space.pop();
+        }
+
+        Stack.prototype.clear = function(){
+            this.space = [];
+        }
+
+        Stack.prototype.readTop = function(){
+            return this.space[this.space.length - 1];
+        }
+
+        Stack.prototype.read = function(){
+            return this.space;
+        }
+
+
+    </script>
+</body>
+</html>

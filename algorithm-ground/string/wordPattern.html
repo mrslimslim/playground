@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const isSameWordPatter = function(pattern, target){
+            const arr = target.split(' ');
+            const patternArr = pattern.split('');
+            const patternMap = {};
+            const targetMap = {};
+            if(arr.length != patternArr.length) return false;
+            for(let i in arr){
+                var targetItem = arr[i];
+                var patternItem = patternArr[i];
+                
+                if(!patternMap[patternItem]){
+                    patternMap[patternItem] = targetItem;
+                }else if(patternMap[patternItem] != targetItem){
+                    return false;
+                }
+
+                // console.log(patternItem);
+                // console.log(patternMap);
+                // console.log(patternMap[patternItem],targetItem);
+
+                console.log(targetItem);
+                console.log(targetMap);
+                console.log(targetMap[targetItem],patternItem);
+                if(!targetMap[targetItem]){
+                    targetMap[targetItem] = patternItem;
+                }else if(targetMap[targetItem] != patternItem){
+                    return false;
+                }
+               
+            }
+            return true;
+        }
+        console.log(isSameWordPatter('abba','la la la la'));
+    </script>
+</body>
+</html>

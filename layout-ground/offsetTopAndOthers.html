@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .parent{
+            display: block;
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .child{
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child"></div>
+
+    </div>
+    <script>
+        const parentDom = document.querySelector('.parent');
+        const childDom = document.querySelector('.child');
+        // childDom.innerHTML
+        console.log(parentDom.offsetTop);
+        console.log(childDom.offsetTop);
+        console.log(childDom.clientTop);
+        console.log(window.innerWidth);
+        console.log(window.innerHeight);
+        console.log(document.body.scrollHeight);
+        console.log(document.body.clientHeight);
+    
+    </script>
+</body>
+</html>

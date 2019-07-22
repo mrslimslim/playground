@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const romanToInt = function(romanStr){
+            let res = '';
+            var map = {
+                I: 1,
+                V: 5,
+                X: 10,
+                L: 50,
+                C: 100,
+                D: 500,
+                M: 1000
+            };
+            for(var i = 0; i < romanStr.length; i++){
+                var v1 = map[romanStr[i]];
+                var v2 = map[romanStr[i+1]];
+                if(v2 > v1){
+                    sum = sum + v2 - v1;
+                    i++;
+                }else{
+                    sum = sum + v1;
+                }
+            }
+            return sum;
+
+        }
+    
+    </script>
+</body>
+</html>

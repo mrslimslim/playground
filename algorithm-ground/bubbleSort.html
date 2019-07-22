@@ -24,27 +24,105 @@
             return arr;
         }
         // 验证
-        const res1 = bubbleSort([1,2,3,4,5,6,7]);
-        console.log(res1);
-        const res2 = bubbleSort([2,1,3,4,5,6,7]);
-        console.log(res2);
-        const res3 = bubbleSort([7,9,2,1,3,4,5,6]);
-        console.log(res3);
+        // const res1 = bubbleSort([1,2,3,4,5,6,7]);
+        // console.log(res1);
+        // const res2 = bubbleSort([2,1,3,4,5,6,7]);
+        // console.log(res2);
+        // const res3 = bubbleSort([7,9,2,1,3,4,5,6]);
+        // console.log(res3);
     </script>
     <script>
-        const bubbleSort2 = function(arr) {
-            const len = arr.length;
-            for(let i = 0; i < len; i++){
-                for(let j = 0; j < len - i - 1 ;j++){
-                    if(arr[j] > arr[j+1]) {
-                        let tmpArr = [arr[j],arr[j+1]];
-                        arr[j] = tmpArr[1];
-                        arr[j+1] = tmpArr[0];
-                        tmpArr = null;
+       const bubbleSortOpt1 = function(arr){
+        for(let i = 0; i < arr.length; i++){
+            let isSorted = true;
+            console.log(i);
+            for(j = 0; j < arr.length - i - 1; j++){
+                if(arr[j] > arr[j+1]){
+                    [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                    isSorted = false;
+                }
+            }
+            if(isSorted){
+                return arr;
+            }
+        }
+        return arr;
+       }
+       console.log(bubbleSortOpt1([1,2,3,4,5]));
+    </script>
+    <script>
+        const bubbleSortOpt2 = function(arr){
+            let endPos = arr.length - 1;
+            while(endPos > 0) {
+                let thisTurnPos = endPos;
+                for(let i = 0; i < thisTurnPos; i++){
+                  if(arr[i] > arr[i+1]){
+                    [arr[i],arr[i+1]] = [arr[i+1],arr[i]];
+                    endPos = i;
+                  }
+                }
+                if(endPos === thisTurnPos){
+                    return arr;
+                }
+            }
+        }
+    
+    </script>
+
+    <script>
+        const bubbleSortOpt3 = function(arr) {
+            let start = 0,
+            end = arr.length - 1;
+            while(start < end){
+                for(let i = start; i < end; i++){
+                    if(arr[i] > arr[i+1]){
+                        [arr[i], arr[i+1]] = [arr[i+1],arr[i]];
+                    }
+                }
+                end--;
+                for(let i = end; i > start; i--){
+                    if(arr[i] < arr[i-1]){
+                        [arr[i],arr[i-1]] = [arr[i-1],arr[i]];
+                    }
+                }
+                start++;
+            }
+            return arr;
+        }
+    </script>
+    <script>
+        function bubbleSortOpt1andOpt2(arr){
+            let endPos = arr.length - 1;
+            while(endPos > 0){
+                let isSorted = true;
+                let thisTurnEndPos = endPos;
+
+                for(let i = 0; i < thisTurnEndPos; i++){
+                    if(arr[i] > arr[i+1]){
+
                     }
                 }
             }
-            return arr;
+        }
+    </script>
+    <script>
+        function bubbleSortOptTriple(array){
+            let start = 0, startPos = start,
+            end = array.length - 1, endPos = end;
+            while(start < end){
+                let isSorted = true;
+
+                for(let i = start; i < end; i++){
+                    if(array[i] > array[i+1]){
+                        [arr[i],arr[i+1]] = [arr[i+1],arr[i]];
+                        endPos = i;
+                        isSorted = false;
+                    }
+                }
+                if(isSorted){
+                    return array;
+                }
+            }
         }
     </script>
 </body>
