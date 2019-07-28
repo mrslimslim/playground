@@ -1,0 +1,22 @@
+{
+  "name": "jsonp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "resS": "nodemon serverRes.js",
+    "reqS": "nodemon serverReq.js",
+    "start": "concurrently \" npm run resS \" \" npm run reqS \" "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
+  }
+}

@@ -13,13 +13,13 @@
                 return arr;
             }
             // 寻找中间数
-            const middleIndex = Math.floor(arr.length/2);
-            const middleNumber = arr[middleIndex];
+            const pivotIndex = Math.floor(arr.length/2);
+            const pivot = arr[middleIndex];
             const leftArr = [];
             const rightArr = [];
-            for(let i = 0; i < arr.length ; i++){
-                if(middleIndex!=i){
-                    if(arr[i] < middleNumber){
+            for(let i = 0; i < arr.length; i++){
+                if(pivotIndex != i){
+                    if(arr[i] < pivot){
                         leftArr.push(arr[i]);
                     }else{
                         rightArr.push(arr[i]);
@@ -27,7 +27,7 @@
                 }
             }
             //递归使用
-            return [...quickSort(leftArr), middleNumber, ...quickSort(rightArr)]
+            return [...quickSort(leftArr), pivot, ...quickSort(rightArr)]
         }
 
         // 验证
