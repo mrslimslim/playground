@@ -9,29 +9,26 @@
 <body>
     <script>
         const randomArr = function(num, start, end){
-            let arr = [];
-            for(let i = 0; i < num; i++){
-                let randomNum = Math.round(start + Math.random() * (end - start));
-                arr.push(randomNum);
+            let arr = [], i = 0;
+            for(i = 0 ; i < num; i++){
+                arr[i] = Math.round(Math.random() * (end - start) + start);
             }
             return arr;
         }
 
-        const arr1 = randomArr(5,1,9);
-        const arr2 = randomArr(5,1,9);
 
-        const intersect = (nums1,nums2) => {
-            const map = {}
-            const res = []
-            for(let n of nums1){
+        const intersect = (num1, num2) => {
+            const map = {};
+            const res = [];
+            for(let n of num1){
                 if(map[n]){
                     map[n]++
                 }else{
-                    map[n] = 1
+                    map[n] = 1;
                 }
             }
 
-            for(let n of nums2){
+            for(let n of num2){
                 if(map[n] > 0){
                     res.push(n);
                     map[n]--;
@@ -39,9 +36,9 @@
             }
             return res;
         }
-        console.log(arr1);
-        console.log(arr2);
-        console.log(intersect(arr1,arr2));
+        const ram1 = randomArr(10,1,10);
+        const ram2 = randomArr(10,1,10);
+        console.log(ram1, ram2, intersect(ram1,ram2));
 
     </script>
 </body>

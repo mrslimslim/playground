@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const hide = (target, prefix = "_") => new Proxy(target, {
+            has: (obj, prop) => (!prop.startsWith(prefix)&& prop in obj),
+            ownKeys: (obj) => Reflect.ownKeys(obj).filter(prop=> (typeof prop !== 'string'|| !prop.startsWith(prefix))),
+            get: (obj, prop, rec) => (prop in rec) ? obj[prop] : undefined
+        })
+
+
+        function Muisc(){
+            this.tune = 'high';
+            this._playType = 'difficult';
+        }        
+        
+    </script>
+</body>
+</html>

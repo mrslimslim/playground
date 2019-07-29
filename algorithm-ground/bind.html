@@ -8,17 +8,37 @@
 </head>
 <body>
     <script>
-        const bind = function(context = window, ...rest){
+        // this.handleClick = this.handleClick.bind(this);
+        const mybind = function(context = window, ...rest) {
             const self = this;
-            const params = rest;
-            var fn = function (...args){
-                self.apply(this instanceof self ? this : context,[...rest, ...args]);
-            };
-            var tmpFn = function(){}
+            const fn = function() {
+                console.log(this instanceof self);
+                self.apply(this instanceof self ? this : context, [...rest, ...arguments]);
+            }
+            const tmpFn = function(){};
             tmpFn.prototype = this.prototype;
             fn.prototype = new tmpFn();
             return fn;
-        }    
+        }
+
+        Function.prototype.mybind = mybind;
+        this.color = 'pink';
+
+        const color = {
+            color: 'red'
+        }
+
+        function OtherColor(){
+            this.color = 'pink';
+            console.log(this.color);
+        }
+        const newFunc = OtherColor.mybind(color);
+        newFunc()
+        // let nfi = new newFunc();
+
+
+        
+
         
     </script>
 </body>

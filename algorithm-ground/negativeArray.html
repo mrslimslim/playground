@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 通过proxy实现数组代理，改变下标实现副索引
+         */
+       const negativeArray = (els) => new Proxy(els,{
+           get: (target, propKey, receiever) => Reflect.get(target, (+propKey)<0 ?String(target.length + +propKey): propKey, receiever)
+       }) 
+
+       const arr = [1,2,3,4];
+    </script>
+</body>
+</html>

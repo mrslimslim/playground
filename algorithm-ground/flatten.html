@@ -18,7 +18,6 @@
         }
 
         const flattenReducer = arr => arr.reduce((a,b)=> (Array.isArray(b) ? [...a,...flattenReducer(b)]: [...a,b]), []);
-        console.log(flatten(arr));
     </script>
 </body>
 </html>
