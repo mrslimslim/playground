@@ -1,0 +1,20 @@
+{
+  "name": "cross-domain-window-name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serverReq.js",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "resS": "nodemon serverRes.js",
+    "reqS": "nodemon serverReq.js",
+    "start": "concurrently \" npm run resS \" \" npm run reqS \" "
+  },
+  "author": "",
+  "license": "ISC"
+}
