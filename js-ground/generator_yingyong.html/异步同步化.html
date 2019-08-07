@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function loadingScreen(){
+      console.log('loadingScreen');
+    }
+
+    function loadUIDataAsynchronously(){
+      setTimeout(()=>{
+        console.log('loading data');
+      },2000);
+    }
+
+    function hideLoadingScreen() {
+      console.log('hide loading');
+    }
+    function* loadUI(){
+      loadingScreen();
+      yield loadUIDataAsynchronously();
+      hideLoadingScreen();
+    }
+
+    const loader = loadUI();
+
+    loader.next();
+
+    function loadUIDataAsynchronously(){
+      setTimeout(()=>{
+        console.log('loading data');
+        loader.next();
+      },2000);
+    }
+    
+  </script>
+</body>
+</html>

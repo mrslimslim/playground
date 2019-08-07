@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 由于generator是genetate iterator的作用
+    // 我们可以针对一些没有iterator接口的数据类型提供自定义的iterator  
+    function* iterEntries(obj){
+      let keys = Object.keys(obj);
+      for(let i = 0; i < keys.length; i++){
+        let key = keys[i];
+        yield [key,obj[key]];
+      }
+    }
+
+    let obj = {foo:1,bar:2};
+    for(let [key, value] of iterEntries(obj)){
+      console.log(key, value);
+    }
+    
+  </script>
+</body>
+</html>
