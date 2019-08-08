@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    unnamedvalue 
+    // 这里后面的代码就直接执行不了了
+
+    const someAsyncThing = function() {
+      return new Promise(function(resolve, reject) {
+        // 下面一行会报错，因为x没有声明
+        resolve(x + 2);
+      });
+    }; 
+    someAsyncThing().then(e=>{console.log(123)});
+    console.log(123)
+  
+  </script>
+</body>
+</html>

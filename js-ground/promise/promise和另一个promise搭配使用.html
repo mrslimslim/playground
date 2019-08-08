@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const p1 = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        resolve('xxx');
+      }, 3000);
+    });
+
+    const p2 = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        resolve(p1);
+      }, 1000);
+    })
+
+    // p2由于resolve的是另一个promise，所以状态是由p1决定的
+    // p1 的状态是pending的话，那么p2的回调就会等待p1的状态改变
+
+    // 这里需要注意的是第一个console.log不会返回一个promise而是类似一个传递的过程
+    p2.then(result=> console.log(result))
+      .catch(err => console.log(err));
+  
+  </script>
+</body>
+</html>

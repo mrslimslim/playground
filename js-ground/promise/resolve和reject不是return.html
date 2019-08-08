@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // resolve是在本轮事件循环的末轮执行的 
+    // 要晚于本轮的同步任务
+
+    const promise = new Promise((resolve,reject)=>{
+      resolve(1);
+      console.log('2');
+    });
+    promise.then(result=>console.log(result));
+
+    // 除非添加return
+    const promise1 = new Promise((resolve,reject)=>{
+      return resolve(1);
+      console.log('2');
+    });
+    promise1.then(result=>console.log(result));
+  </script>
+</body>
+</html>

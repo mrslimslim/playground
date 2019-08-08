@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 可以在then的回调里面返回promise 让promise支持链式写法
+    const p1 = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        resolve('xxx');
+      }, 3000);
+    });
+
+    const p2 = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        resolve(p1);
+      }, 1000);
+    })
+
+    const p3 = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        resolve('zzz');
+      }, 4000);
+    })
+
+    p2.then((res)=>{
+      console.log(res);
+      return p3;
+    }).then((res)=>{
+      console.log(res);
+    })
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const promise = new Promise((resolve,reject)=>{
+      reject(new Error('err'));
+    });
+
+    const promise2 = new Promise((resolve,reject)=>{
+      reject(new Error('err'));
+    });
+
+    // bad
+    promise.then(function(){
+      console.log('success')
+    },function(){
+      console.log('error');
+    })
+
+    // good
+    promise.then(function(){
+      console.log('success')
+    }).catch(e=>{
+      console.log(e);
+    })
+
+    promise.then(function(){
+      return promise1;
+    }).then(function(){
+
+    }).catch(e=>{
+      console.log(e)
+    })
+  </script>
+</body>
+</html>

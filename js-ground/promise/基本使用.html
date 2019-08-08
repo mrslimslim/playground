@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // promise 新建后就会立即执行
+    const promise = new Promise(function(resolve, reject){
+      setTimeout(() => {
+        if(true){
+          resolve(1);
+        }else{
+          reject(new TypeError('something wrong'));
+        }
+      }, 100);
+    });
+
+    promise.then(function(){
+      // success callback
+    },function(){
+      // failed callback
+    })
+  
+  </script>
+</body>
+</html>

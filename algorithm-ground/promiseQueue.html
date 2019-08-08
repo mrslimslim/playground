@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const p1 = function(){
+      return new Promise((resolve)=>{
+        setTimeout(()=>{
+          resolve(1)
+        },1000)
+      });
+    }
+    const p2 = function(p){
+      console.log('p',p);
+      return new Promise((resolve)=>{
+        setTimeout(()=>{
+          resolve(2)
+        },1000)
+      });
+    };
+    const p3 = function(p){
+      console.log('p',p);
+      return new Promise((resolve)=>{
+        setTimeout(()=>{
+          resolve(3)
+        },1000)
+      });
+    };
+    
+    const promiseArr = [p1,p2,p3];
+    let index = 0;
+    function run(promiseArr){
+      function next(data){
+        console.log(data);
+        if(index == promiseArr.length) return ;
+        const currPromise = promiseArr[index](data);
+        index++;
+        currPromise.then(next);
+      }
+      next();
+    }
+
+    run(promiseArr);
+
+    const p4 = new Promise((resolve)=>{
+      console.log(4);
+    })
+    
+  </script>
+</body>
+</html>
