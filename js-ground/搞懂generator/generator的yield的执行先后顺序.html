@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function*consumer(){
+      console.log('start');
+      console.log(`1 . ${yield}`);
+      console.log(`2 . ${yield}`);
+      return 'result';
+    }
+    // 第一次调用generator函数开始执行直到遇到第一个yield表达式为止 next返回 yield的值
+    // 第二次则从上一次yield停止的地方，执行到第二个yield表达式的位置 next返回  yield的值
+    let genObj = consumer();
+    genObj.next();
+    genObj.next('first');
+    genObj.next('second');
+
+  </script>
+</body>
+</html>

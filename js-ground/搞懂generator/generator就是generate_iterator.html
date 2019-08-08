@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function*numbers(){
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    // 只要有这些接口
+    let iterator = numbers();
+
+    console.log([...iterator]);
+    let iterator2 = numbers();
+
+    console.log(Array.from(iterator2));
+
+    let [x, y] = numbers();
+    console.log(x, y);
+  </script>
+</body>
+</html>

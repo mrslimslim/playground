@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 利用了递归的方式
+     * 以及generator
+     * 在第一次循环的时候暂缓执行的特性，以及generator函数的可遍历特性
+     * 在第一次遍历的时候判断是否是数组
+     * 如果是数组则开始下一次的递归
+     * 递归的终止条件是当前循环的数是number
+     */
+    var arr = [12,123,[1,2,3],[4,5,6,7,[66,667]]];
+    var flat = function*(arr){
+      for(let i = 0; i < arr.length; i++){
+        var item = arr[i];
+        if(typeof item !== 'number'){
+          yield*flat(item);
+        }else{
+          yield item;
+        }
+      }
+    }
+
+    for(let v of flat(arr)){
+      console.log(v);
+    }
+    
+  </script>
+</body>
+</html>

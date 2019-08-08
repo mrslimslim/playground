@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // Generator.prototype.throw()
+      // 第一个错误被generator函数内的catch捕获,i第二次抛出错误由于generator内部的语句已经执行过了,所以这个错误被抛出了generator函数提，被函数体外的catch语句捕获
+
+      var g = function*(){
+        try{
+          yield;
+        }catch(e){
+          console.log('内部捕获',e);
+        }
+      }
+
+      var i = g();
+      i.next();
+
+      try{
+        i.throw('a');
+        i.throw('b');
+      }catch(e){
+        console.log('外部捕获', e);
+      }
+    
+  </script>
+</body>
+</html>

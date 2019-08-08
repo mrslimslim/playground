@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function* g()  {
+      console.log(this);
+      yield this.a = 1;
+    }
+    // 不能简单的将generator函数当做构造函数来看 
+    // 也不能直接将generator 通过new来调用 会产生报错
+    const f = g();
+    f.next();
+
+    // hack
+    // 在生成iterator的过程中可以直接通过call或者apply来绑定context
+    const f2 = g.call({});
+    f2.next();
+
+    // 
+    const F = function (g) {
+      return g.call(g.prototype);
+    }
+    const f3 = F(g);
+    f3.next();
+
+    
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function * iterTree(tree){
+      if(Array.isArray(tree)){
+        for(let i = 0; i < tree.length;i++){
+          yield* iterTree(tree[i]);
+        }
+      }else{
+        yield tree
+      }
+    }
+
+    const tree = [ 'ax', 'b', 'c' ];
+
+    for(let x of iterTree(tree)) {
+      console.log(x);
+    }
+    
+  </script>
+</body>
+</html>

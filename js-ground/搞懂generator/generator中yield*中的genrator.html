@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function*foo() {
+      yield 'a';
+      yield 'b';
+    }
+    function*bar(){
+      yield 'x';
+      yield*foo();
+      yield 'y'
+    }
+
+
+    // 等同于
+
+    
+    // function* bar() {
+    //   yield 'x';
+    //   for (let v of foo()) {
+    //     yield v;
+    //   }
+    //   yield 'y';
+    // }
+
+    // for (let v of bar()){
+    //   console.log(v);
+    // }
+
+    function* gen() {
+      yield* [1,2,3];
+    }
+
+
+    // 等同于
+
+    function*gen1(){
+      for(let i of [1,2,3]){
+        yield i;
+      }
+    }
+
+
+    
+  </script>
+</body>
+</html>

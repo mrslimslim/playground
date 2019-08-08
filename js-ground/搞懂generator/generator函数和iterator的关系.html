@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1,2,3];
+    console.log(
+      arr[Symbol.iterator]
+    );
+    let g = arr[Symbol.iterator]();
+    for(let i of g){
+      console.log(i);
+    }
+
+
+    var obj = {};
+
+    obj[Symbol.iterator] = function*(){
+      yield 1;
+      yield 1;
+      yield 1;
+    }
+    console.log([...obj])
+
+    // 使用generator模仿
+    // 从这个例子可以看出generator就是遍历生成器
+    function*loopg(){
+      var arr = [1,2,3];
+      for(let i = 0; i < arr.length; i++){
+        yield arr[i];
+      }
+    }
+    let g2 = loopg();
+    for(let i of g2){
+      console.log(i);
+    }
+
+
+
+  </script>
+</body>
+</html>

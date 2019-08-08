@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 始终的规则 yield的返回值是undefined
+    // 我们可以通过next传参来决定它上一个yield的返回值
+    function*foo(x) {
+      var y = 2*(yield(x+1)); // #1
+      var z = yield(y/3); // #2
+      return (x+y+z);
+    }
+
+    var a = foo(5);
+    // 由于x传入的初始值为5 那么a.next() 返回的yield后面的值为6
+    let res1 = a.next();
+    console.log(res1);
+    // 此时a.next()传参为undefined 说明 #1 yield的返回值为undefined
+    let res2 = a.next();
+    // 此时a.next()传参为undefined 说明 #1 yield的返回值为undefined
+    console.log(res2);
+    // 此时a.next()传参为undefined 说明 #1 yield的返回值为undefined
+    let res3 = a.next();
+    console.log(res3);
+
+
+    var a = foo(5);
+    // 由于x传入的初始值为5 那么a.next() 返回的yield后面的值为6 
+    let res4 = a.next(111);
+    console.log(res4);
+    // 此时a.next(12)传参为12 说明 #1 yield的返回值为12  那么 y的值为24 
+    let res5 = a.next(12);
+    console.log(res5);
+    // 此时a.next()传参为8 说明 #2 yield的返回值为8  那么z的值为8 ,那么 x + y + z = 5 + 24 + 8 => 37
+    let res6 = a.next(8);
+    console.log(res6);
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * @1. generator是状态机 
+     * @2. 执行next方法时，yield是暂停的标志，并将紧跟在yield后面的那个表达式的值作为next执行后的返回的value值
+     * @3. 继续执行next，直到遇到yield然后暂停
+     * @4. 如果没有yield 就直接执行到return ,并将return的值作为next返回值的value值
+     * @5. 如果没有return值则返回值的value属性为undefined
+     * @6. yield和return相比yield有记忆功能而return没有
+     * @7. yield在除generator其他地方调用都会报错
+     * @8. yield在另一个表达式中，必须放在圆括号里面  如: console.log(123 + (yield));
+     */
+    function* helloGenerator() {
+      console.log('1');
+      yield 'hello';
+      console.log('2')
+      yield 'world';
+      console.log('3')
+      return 'ending';
+    }
+    // 这里调用helloGenerator并不会执行
+    var hw = helloGenerator();
+    var str = 'a';
+
+
+    // for(let item of hw){
+    //   str += str;
+    //   console.log(str);
+    //   console.log(item);
+    // }
+    // let res1,res2,res3;
+    // res1 = hw.next();
+    // console.log(res1);
+    // res2 = hw.next();
+    // console.log(res2);
+    // res3 = hw.next();
+    // console.log(res3);
+
+
+
+    /**
+     * 1. next方法的参数
+     * 2. yield的表达式本身没有返回值，或者总是返回返回undefined
+     * 3. 但是我们可以通过给next传参来表示上一个yield的返回值
+     */
+
+
+     function*testNextG(){
+      const v = yield 1;
+      console.log(v);
+      yield 2 + v;
+     }
+
+     const tn = testNextG();
+
+     let tnr1 = tn.next();
+     let tnr2 = tn.next(1);
+     console.log(tnr1);
+     console.log(tnr2);
+
+  </script>
+</body>
+</html>

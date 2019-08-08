@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 下面是二叉树的构造函数
+    // 三个参数分别是左数、当前节点和右数
+    function Tree(left, label, right) {
+      this.left = left;
+      this.label = label;
+      this.right = right;
+    }  
+    
+    // 下面是中序遍历(inorder)
+    // 中序遍历是： 对于任意节点来说，先打印它的左子树，然后再打印它本身，最后打印它的右子树
+    // 由于返回的是一个遍历器，所以要用generator函数
+    // 函数内采用递归算法，所以左树和右数要用yield*遍历
+    function*inorder(t){
+      if(t){
+        yield t.label;
+        yield* inorder(t.left);
+        yield* inorder(t.right);
+      }
+    }
+
+    // 生成二叉树
+    function make(array){
+      if(array.length === 1) return new Tree(null,array[0], null);
+      return new Tree(make(array[0]), array[1], make(array[2]));
+    }
+
+    // 中序遍历是： 对于任意节点来说，先打印它的左子树，然后再打印它本身，最后打印它的右子树
+    let tree = make([[['d'],'b',['e']],'a',[['f'],'c',['g']]]);
+
+    let result = [];
+    console.log([...inorder(tree)])
+    for(let node of inorder(tree)){
+      result.push(node);
+    }
+    console.log(result);
+  </script>
+</body>
+</html>

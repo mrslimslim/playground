@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 斐波那契数列的实现  （兔子问题，和楼梯1，2步的问题）
+    // 递归的实现    前一个数是后两个数之和  终止条件 0，
+
+    function*fibonacci(){
+      let [prev, curr] = [0, 1];
+      // 无限循环的另外一种写法
+      for(;;) {
+        yield curr;
+        [prev, curr] = [curr, curr + prev];
+      }
+    }
+
+    let times = 10;
+    for(let n of fibonacci()){
+      if(times == 0){
+        break;
+      }    
+      console.log(n);    
+      times--;
+    }
+    
+  </script>
+</body>
+</html>
