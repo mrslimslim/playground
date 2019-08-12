@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script async src="./script/async2.js"></script>
+  <script defer src="./script/defer1.js">
+    // console.log('some script');
+  </script>
+  <script defer src="./script/defer2.js"></script>
+  <script async src="./script/async1.js"></script>
+  <script>
+   
+    /**
+     * @1 defer async脚本都是立即下载，但是都不会立即解析
+     * @2 defer会按照加载顺序执行，而async则不会按照加载顺序执行
+     * @3 defer ,async会在window.onload之前执行，而不会确定在DOMContentLoaded之前或或之后执行
+     */
+    console.log('first script');
+    window.onload = function(){
+      console.log('hello world');
+    }
+   window.addEventListener('DOMContentLoaded',function(){
+     console.log('DOMContentLoaded');
+   })
+  
+  </script>
+</body>
+</html>
