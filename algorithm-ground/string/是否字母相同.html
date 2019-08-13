@@ -8,14 +8,27 @@
 </head>
 <body>
     <script>
+        // 判断当前的字符串是否是 重组后的字符串
+        /**
+         * @1 将当前的字符串转换成数组后，进行排序
+         * @2 将排序后的数组转换为字符串
+         * @3 对比两个字符串是否是一样
+         */
+        // const isAnagram = function(first, last){
+        //     if(first.length !== last.length){
+        //         return false;
+        //     }
+        //     first = first.split('').sort.join('');
+        //     last = last.split('').join('');
+        //     return first == last;
+        // }
         const isAnagram = function(first, last){
-            if(first.length !== last.length){
-                return false;
-            }
-            first = first.split('').sort.join('');
-            last = last.split('').join('');
+            if(first.length !== last.length) return false;
+            first = first.split("").sort().join();
+            last = last.split("").sort().join();
             return first == last;
         }
+        console.log(isAnagram('hello','ehlol'));
     </script>
 </body>
 </html>
