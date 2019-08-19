@@ -8,39 +8,76 @@
 </head>
 <body>
     <script>
-        const isSameWordPatter = function(pattern, target){
-            const arr = target.split(' ');
-            const patternArr = pattern.split('');
-            const patternMap = {};
-            const targetMap = {};
-            if(arr.length != patternArr.length) return false;
-            for(let i in arr){
-                var targetItem = arr[i];
-                var patternItem = patternArr[i];
-                
-                if(!patternMap[patternItem]){
-                    patternMap[patternItem] = targetItem;
-                }else if(patternMap[patternItem] != targetItem){
+        /**
+         * 给一个样板跟一个字符串，判断字符串是否有遵循样板的格式
+         * 比如 pattern = 'abba' str = 'dog cat cat dog'  这样就满足条件
+         */
+
+         /**
+          * 1.创建两个对象map ,用pattern映射target, 再用target映射pattern,如果一一对应说明成立，返回true
+          * 2.如果二者的长度不相符则说明肯定不一样 返回false
+          * 3. 比如 mapA = {a:'dog',b:'cat'} mapB = {'dog': 'a', 'cat': 'b'}
+        */
+
+
+        const isSame = function(p, t){
+            const pArr = p.split('');
+            const tArr = t.split(' ');
+            const tMap = {};
+            const pMap = {}
+            if(pArr.length != tArr.length) return false;
+            for(let ip in pArr){
+                let itemp = pArr[ip];
+                let itemt = tArr[ip];
+                if(!pMap[itemp]){
+                    pMap[itemp] = tArr[ip];
+                }else if(pMap[itemp] != tArr[ip]){
                     return false;
                 }
 
-                // console.log(patternItem);
-                // console.log(patternMap);
-                // console.log(patternMap[patternItem],targetItem);
-
-                console.log(targetItem);
-                console.log(targetMap);
-                console.log(targetMap[targetItem],patternItem);
-                if(!targetMap[targetItem]){
-                    targetMap[targetItem] = patternItem;
-                }else if(targetMap[targetItem] != patternItem){
+                if(!tMap[itemt]){
+                    tMap[itemt] = pArr[ip];
+                }else if(tMap[itemt] != pArr[ip]){
                     return false;
                 }
-               
             }
             return true;
         }
-        console.log(isSameWordPatter('abba','la la la la'));
+
+
+        // const isSameWordPatter = function(pattern, target){
+        //     const arr = target.split(' ');
+        //     const patternArr = pattern.split('');
+        //     const patternMap = {};
+        //     const targetMap = {};
+        //     if(arr.length != patternArr.length) return false;
+        //     for(let i in arr){
+        //         var targetItem = arr[i];
+        //         var patternItem = patternArr[i];
+                
+        //         if(!patternMap[patternItem]){
+        //             patternMap[patternItem] = targetItem;
+        //         }else if(patternMap[patternItem] != targetItem){
+        //             return false;
+        //         }
+
+        //         // console.log(patternItem);
+        //         // console.log(patternMap);
+        //         // console.log(patternMap[patternItem],targetItem);
+
+        //         console.log(targetItem);
+        //         console.log(targetMap);
+        //         console.log(targetMap[targetItem],patternItem);
+        //         if(!targetMap[targetItem]){
+        //             targetMap[targetItem] = patternItem;
+        //         }else if(targetMap[targetItem] != patternItem){
+        //             return false;
+        //         }
+               
+        //     }
+        //     return true;
+        // }
+        console.log(isSame('abpa','la da da la'));
     </script>
 </body>
 </html>

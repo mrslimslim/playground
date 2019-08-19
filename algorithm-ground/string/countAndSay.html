@@ -8,9 +8,54 @@
 </head>
 <body>
     <script>
+        /**
+         * 规则描述
+         *  1     讀做 1個1， 所以下一個變成 11  
+            11    讀做 2個1， 也就是21  
+            21    讀做 1個2 1個1，得到1211
+            1211  1個1，1個2，2個1  111221  
+            输入: 4
+            输出: "1211"
+         */
+
         var countAndSay = function(n){
-            
+            if(n <=1) return '1';
+            // countSay 是由count + num组成
+            var countSay = '1';
+            // 剩下来的情况是n>=2的状况
+            for(var i = 2; i<= n; i++){
+                var num = countSay.charAt(0);
+                var tmp = countSay;
+                var count = 1;
+                countSay = '';
+                for(var j = 1;j < tmp.length;j++){
+                    // 数字相同，count++
+                    if(tmp.charAt(j) == num){
+                        count++;
+                    }else{
+                        countSay += count;
+                        countSay += num;
+                        num = tmp.charAt(j);
+                        count = 1;
+                    }
+                }
+                countSay += count;
+                countSay += num;
+            }
+            return countSay;
         }
+
+        var countAndSay2 = function(n) {
+            let str = '1';
+            for (let i = 0; i < n - 1; i++) {
+                str = str.match(/(1+)|(2+)|(3+)/g).reduce((pre, cur) => pre + cur.length + cur[0], '');
+            }
+            return str;
+        };
+
+
+
+        console.log(countAndSay2(6));
     
     </script>
 </body>

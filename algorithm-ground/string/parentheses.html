@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * @1 給一個只包含'(', ')', '{', '}', '[' , ']'這些括號字元的字串，判斷這些括號是不是合法的。 
+     * @2 右括號必須依照正確的順序出現，"()" 與 "()[]{}" 都是合法的，但"(]" 和 "([)]"就不是。
+    */
+    // 解决思路
+    // @1 用stack先进后出的特性，遇到左括号就放到stack，遇到右括号就去除stack里面的左括号对比是否合法
+    // @2 如果最后stack的长度为0，说明匹配，否则不匹配
+
+    // 比如说字符串 "([)]",'('左括号，放入stack -> stack = '(', '['放入stack = '(['
+    // ')'右括号,取出stack -> '[', [)是一个不match得组合
+   
+
+    /**
+     * @parama {string}
+     * @return {boolean}
+    */
+    var isValid = function(s){
+      if(!s) return true;
+      var stack = [];
+
+      var left = ['(','[','{'];
+      var right = [')',']','}'];
+      var map = new Map();
+      map.set('(',')');
+      map.set('[',']');
+      map.set('{','}');
+      for(var i in s){
+        if(left.indexOf(s[i]) > -1){
+          stack.push(s[i]);
+        }
+        // 当遇到右括号时，从stack取出左括号判断是否match
+        if(right.indexOf(s[i]) > -1){
+          // left brace
+          var stackBrace = stack.pop();
+          if(map[stackBrace] !== s[i]){
+            return false;
+          }
+        }
+      }
+      // 如果都对称的话，那么stack的应该是为空
+    }
+
+
+  
+  </script>
+</body>
+</html>
