@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper{
+      position: absolute;
+    }
+    .item {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+    }
+    .next {
+      left: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="pre item"></div>
+    <div class="next item"></div>
+    <img class="target-item" src="./../../assets/HTB1a6LxLpXXXXX5XXXXq6xXFXXXP.jpg" alt="">
+  </div>
+  <script>
+    const pre = document.querySelector('.pre');
+    const next = document.querySelector('.next');
+    const imgItem = document.querySelector('.target-item');
+    pre.addEventListener('click', function(){
+      imgItem.src = './../../assets/058755554a7ba000000115a8e12fd7.jpg';
+    })
+    next.addEventListener('click', function(){
+      imgItem.src = './../../assets/HTB1a6LxLpXXXXX5XXXXq6xXFXXXP.jpg';
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const str = '12345678';
+    const res = str.replace(/\d{3,6}/g,'X');
+    // 贪婪模式
+    // 目的是 尽可能多的匹配 默认就是贪婪模式
+    // 非贪婪模式
+    // 目的 尽可能少的匹配 非贪婪模式开启需要在量词后面加上?
+    // 在量词后面添加?
+    const res1 = str.replace(/\d{3,6}?/g,'X');
+    console.log(res);
+    console.log(res1);
+    
+  </script>
+</body>
+</html>

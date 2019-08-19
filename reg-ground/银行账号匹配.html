@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const countStr = '12345678901234567212';
+    // 这里的不能前面加上^ startWith，因为这样只能满足一个
+    const res = countStr.replace(/(\d{4})/g,'$1 ');
+    const res1 = countStr.replace(/(\d{4})(?=\d)/g,'$1 ');
+    // 前瞻是查看后面的数值是否满足条件 并不算参与匹配的元素
+    
+    console.log(res + 'a');
+    console.log(res1 + 'a');
+    
+  </script>
+</body>
+</html>

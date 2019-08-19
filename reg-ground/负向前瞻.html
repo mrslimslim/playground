@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // 负向前瞻 exp(?!assert)
+      const str = 'a=1&b=2&c=3';
+      // 我们的目标是匹配到c=3
+      // 通过负向前瞻 匹配到目标结果
+      const res = str.replace(/(\w=\d)(?!&)/,'hello');
+      // 检验结果  => 'a=1&b=2&hello'
+      console.log(res);
+    
+  </script>
+</body>
+</html>
