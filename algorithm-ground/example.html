@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function mergeArr(a,b){
+    //     const s = [];
+    //     for(let ia of a){
+    //       for(let ib of b){
+    //         s.push([ia,ib]);
+    //       }
+    //     }
+    //     return s;
+    //   }
+
+
+    const arrangeArr = function(t){
+      if(t.length <= 1) return t;
+      function mergeArr(a,b){
+        const s = [];
+        for(let ia of a){
+          for(let ib of b){
+            const as = Array.isArray(ia) ? [...ia] : [ia];
+            const bs = Array.isArray(ib) ? [...ib] : [ib];
+            s.unshift([...as,...bs]);
+          }
+        }
+        return s;
+      }
+      const result = t.reduce((sum,curr)=>{
+        return mergeArr(sum,curr);
+      });
+      return result;
+    }
+
+    console.log(arrangeArr([['1', '2'], ['1', '2', '3'], ['1', '3']]));
+  </script>
+</body>
+</html>

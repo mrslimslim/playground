@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。
+     * 如果不存在最后一个单词，请返回 0 。
+     */ 
+    const lengthOfLastWord= function(s){
+      var ary = s.split(/\s/);
+      if(s.length == 0) return 0;
+      if(ary.length == 0) return 0;
+      // 从数组最后面取出单词，如果未空白 就不是单词，所以继续往前面找
+      while(ary.length > 0){
+        var l = ary.pop()
+        if(l.length > 0) return l.length;
+      }
+      return 0;
+    }
+  
+  </script>
+</body>
+</html>

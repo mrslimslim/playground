@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     * 如果不存在公共前缀，返回空字符串 ""
+    */
+
+    // 思路 把第一字母作为公共的前缀，然后依次与后面的元素比较，取出公共部分，依次进行比较
+
+    const longestCommonPrefix = function(strs) {
+      if(strs == null || strs.length  == 0 ) return '';
+      // same 表示共同的前缀
+      var same = strs[0];
+      // 只需要对比same 跟目前字符串共同的字母就好
+      for(let i = 0 ; i < strs.length; i++){
+        var j ;
+        for( j = 0 ; j < same.length; j++){
+          if(same[j] != str.charAt(j)){
+            break;
+          }
+        }
+        // same与当前的字符串的str前几位相同，就作为新的same
+        // focus on the gap
+        same = same.slice(0,j);
+      }
+      return same;
+    }
+  </script>
+</body>
+</html>

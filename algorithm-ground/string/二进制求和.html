@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 要求 ： 给定两个二进制字符串，返回他们的和
+     * 输入为 非空字符串且只包含1和0
+     */
+     const addBinary = function(a, b){
+      function add(x,y){
+        if(x) return x+y;
+        else return y;
+      }
+      a = a.split('').map(Number);
+      b = b.split('').map(Number);
+      var len = Math.max(a.length,b.length) ;
+      while(a.length != len ) a.unshift(0);
+      while(b.length != len ) b.unshift(0);
+      var res = [];
+      var tmp ;
+      var count = 0;
+      for(var i = len -1 ; i >=0 ; i--){
+        tmp = a[i] + b[i] + count;
+        if(tmp >= 2){
+          tmp = tmp - 2;
+          count = 1;
+        }else{
+          count = 0;
+        }
+        res.unshift(tmp);
+      }
+      res.unshift(count);
+      return result.join('').replace(/^0+/,'')|| 0;
+     }
+  
+  </script>
+</body>
+</html>

@@ -42,14 +42,15 @@
         if(right.indexOf(s[i]) > -1){
           // left brace
           var stackBrace = stack.pop();
-          if(map[stackBrace] !== s[i]){
+          if(map.get(stackBrace) !== s[i]){
             return false;
           }
         }
       }
       // 如果都对称的话，那么stack的应该是为空
+      return stack.length === 0;
     }
-
+    console.log(isValid('{[]}()'));
 
   
   </script>
