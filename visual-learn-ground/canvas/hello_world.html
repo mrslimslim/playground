@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    canvas {
+      width: 250px;
+      height: 250px;
+      border: 1px solid pink;
+    }
+  </style>
+</head>
+<body>
+  <!-- canvas 元素属性决定了画布宽高 css样式决定了样式宽高 -->
+  <!-- 画布宽高决定了可视区域的坐标范围 -->
+  <!-- 样式宽高决定了在页面的DOM大小 图形在页面的大小等于 样式宽高/画布宽高 * 画布尺寸 -->
+  <canvas id="cvs" width="500" height="500"></canvas>
+  <script>
+    // 1、获取canvas元素
+    const canvas = document.querySelector('#cvs');
+    // 2、创建canvas 2d上下文
+    const context = canvas.getContext('2d');
+    const rectSize = [100, 100];
+    // 3、样式设置
+    context.fillStyle = 'red';
+    context.save();
+    // 4、开始绘制
+    context.beginPath();
+    context.translate(-0.5 * rectSize[0], -0.5 * rectSize[1]);
+    // 5、调用绘制指令
+    context.rect(0.5 * canvas.width, 0.5 * canvas.height, ...rectSize);
+    // 5、调用fill指令，将内容输出到画布上
+    context.fill();
+    context.restore();
+    const rect2Size = [100, 100];
+    context.beginPath();
+    context.rect(0,0, rect2Size[0], rect2Size[1]);
+    context.fill();
+    
+
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">add</button>
+  <script>
+    function observe(data, cb){
+      Object.keys(data).forEach(function(key){
+        const old = data[key]
+        Object.defineProperty(data, key, {
+          enumerable: true,
+          configurable: true,
+          get(){
+            return old
+          },
+          set(n) {
+            old = n;
+            cb(n)
+          }
+        })
+      })
+    }
+
+    function _proxy(data){
+      const that = this;
+      
+      Object.keys(data).forEach(key=>{
+        // 这里要将赋值对象改为that,将data的值绑定到vm上
+        let old = that._data[key]
+        Object.defineProperty(that,key, {
+          configurable: true,
+          enumerable: true,
+          get(){
+            return old;
+          },
+          set(val){
+            old = val
+          }
+        })
+      })
+    }
+
+    class Vue {
+      constructor(obj) {
+        this._data = obj.data
+        observe(this._data, obj.doSomethingAfterChange)
+        _proxy.call(this, obj.data)
+      }
+
+    }
+
+    var vm = new Vue({
+      data: {
+        a: 1,
+        b: 2
+      },
+      doSomethingAfterChange(){
+        console.log('trigger');
+      }
+    })
+    const btn = document.querySelector('#btn')
+    btn.onclick = ()=>{
+      vm.a++
+      console.log(vm);
+    }
+  </script>
+</body>
+</html>

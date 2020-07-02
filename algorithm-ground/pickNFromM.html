@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 从长度为m的数组中取出长度为n的所有组合
+      function getFlagArrs(m, n) {
+        var flagArrs = [],
+          flagArr = [],
+          isEnd = false;
+        for (var i = 0; i < m; i++) {
+          flagArr[i] = i < n ? 1 : 0;
+        }
+        flagArrs.push(flagArr.concat());
+        // 当n不等于0并且m大于n的时候进入
+        if (n && m > n) {
+          while (!isEnd) {
+            var leftCnt = 0;
+            for (var i = 0; i < m - 1; i++) {
+              if (flagArr[i] == 1 && flagArr[i + 1] == 0) {
+                for (var j = 0; j < i; j++) {
+                  flagArr[j] = j < leftCnt ? 1 : 0;
+                }
+                console.log(JSON.stringify(flagArr), i);
+                flagArr[i] = 0;
+                flagArr[i + 1] = 1;
+                var aTmp = flagArr.concat();
+                flagArrs.push(aTmp);
+                if (aTmp.slice(-n).join("").indexOf("0") == -1) {
+                  isEnd = true;
+                }
+                break;
+              }
+              flagArr[i] == 1 && leftCnt++;
+            }
+          }
+        }
+        return flagArrs;
+      }
+      const res = getFlagArrs(4, 2);
+      console.log(res);
+    </script>
+  </body>
+</html>

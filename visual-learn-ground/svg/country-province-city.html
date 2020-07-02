@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <svg viewBox="0 0 1600 1600">
+  </svg>
+  <script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>
+  <script>
+    const dataSource =
+        "https://s5.ssl.qhres.com/static/b0695e2dd30daa64.json";
+    void async function(){
+      const data = await (await fetch(dataSource)).json();
+      console.log(data);
+      // 通过d3 给树状结构数据里面的元素分配尺寸和坐标信息
+      const regions = d3.hierarchy(data).sum(d => 1).sort((a,b)=> a.value > b.value);
+      const pack = d3.pack().size([1600, 1600]).padding(3);
+      const root = pack(regions);
+      function drawCircle(parent, node, {fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white'} = {}){
+        const { x, y, r } = node;
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        circle.setAttribute('fill', fillStyle);
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', r);
+        parent.appendChild(circle);
+      }
+      function drawText(parent, node ,{fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white'} = {}){
+        const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+        text.setAttribute('font-size', '1.5rem');
+        text.setAttribute('fill', textColor);
+        text.setAttribute('text-anchor', 'middle');
+        console.log('parent', node);
+        const name = node.data.name; 
+        text.textContent = name;
+        text.setAttribute('x', node.x);
+        text.setAttribute('y', node.y);
+        parent.appendChild(text);
+      }
+      const svg = document.querySelector('svg');
+
+      function draw(parent, root){
+        const children = root.children
+        drawCircle(parent, root);
+        if(children){
+          console.log(children);
+          const group = document.createElementNS('http://www.w3.org/2000/svg','g')
+          children.forEach(item=>{
+            draw(group, item)
+          })
+          svg.appendChild(group);
+        }else{
+          drawText(parent, root)
+        }
+      }
+      draw(svg, root);
+    }()
+  </script>
+</body>
+</html>

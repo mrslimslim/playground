@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      padding: 0;
+      margin: 0;
+    }
+    .p{
+      width: 600px;
+      display: flex;
+      height: 400px;
+    }
+    /* 计算公式 1、freeze计算长度与真实长度flex-basis（父容器长度）比较 比flex-basis长则使用shrink
+      计算长度位 rFlexBasis + lFlexBasis
+      短则使用grow
+      使用shrink时每个item长度的计算公式
+      rMinus1Length = 500 * 2/(500 * 2 + 400) * (600 - (500 + 400));
+      rLength = 500 - rMinus1Length;
+      lMinusLength = 400 / (500 * 2 + 400) * (600- (500 + 400));
+      lLength = 400 - lMinusLength;
+
+     使用grow还是shrink */
+    .r{
+      flex: 1 2 500px;
+      background-color: palevioletred;
+    }
+    .l {
+      flex: 2 1 400px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="p">
+    <div class="r"></div>
+    <div class="l"></div>
+  </div>
+</body>
+</html>

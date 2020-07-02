@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Utf8Encoding(inp) {
+        const text = String(inp);
+        let res = "";
+        const arr = [];
+        for (let character of text) {
+          const unicodePosition = character.codePointAt(0);
+          let full;
+          let byte1 = "";
+          let hex1 = "";
+          let byte2 = "";
+          let hex2 = "";
+          let byte3 = "";
+          let hex3 = "";
+          let byte4 = "";
+          let hex4 = "";
+          switch (true) {
+            case unicodePosition >= 0 && unicodePosition <= 127:
+              full = unicodePosition.toString(2).padStart(8, 0);
+              byte1 = full;
+              hex1 = parseInt(byte1, 2).toString(16);
+              res += "\\w" + hex1;
+              arr.push(hex1)
+              break;
+            case unicodePosition >= 128 && unicodePosition <= 2047:
+              full = unicodePosition.toString(2).padStart(11, 0);
+              byte1 = "110" + full.slice(0, 5);
+              byte2 = "10" + full.slice(5);
+              hex1 = parseInt(byte1, 2);
+              hex2 = parseInt(byte2, 2).toString(16);
+              res += "\\w" + hex1 + "\\w" + hex2;
+              arr.push(hex1)
+              arr.push(hex2)
+              break;
+            case unicodePosition >= 2048 && unicodePosition <= 65535:
+              full = unicodePosition.toString(2).padStart(16, 0);
+              byte1 = "1110" + full.slice(0, 4);
+              byte2 = "10" + full.slice(4, 10);
+              byte3 = "10" + full.slice(10);
+              hex1 = parseInt(byte1, 2).toString(16);
+              hex2 = parseInt(byte2, 2).toString(16);
+              hex3 = parseInt(byte3, 2).toString(16);
+              res += "\\w" + hex1 + "\\w" + hex2 + "\\w" + hex3;
+              arr.push(hex1)
+              arr.push(hex2)
+              arr.push(hex3)
+              break;
+            case unicodePosition >= 65536 && unicodePosition <= 65535:
+              full = unicodePosition.toString(2).padStart(21, 0);
+              byte1 = "11110" + full.slice(0, 3);
+              byte2 = "10" + full.slice(3, 9);
+              byte3 = "10" + full.slice(9, 15);
+              byte3 = "10" + full.slice(15, 21);
+              hex1 = parseInt(byte1, 2).toString(16);
+              hex2 = parseInt(byte2, 2).toString(16);
+              hex3 = parseInt(byte3, 2).toString(16);
+              hex4 = parseInt(byte4, 2).toString(16);
+              arr.push(hex1)
+              arr.push(hex2)
+              arr.push(hex3)
+              arr.push(hex4)
+              res += "\\w" + hex1 + "\\w" + hex2 + "\\w" + hex3 + "\\w" + hex4;
+              break;
+          }
+        }
+        return res;
+      }
+      console.log(Utf8Encoding('123'));
+      // const unitArr = new Uint8Array(Utf8Encoding('123한'))
+      // console.log(unitArr);
+      const res = new TextDecoder("utf-8").decode(new Uint8Array([31, 32, 33]));
+      console.log(res);
+    </script>
+  </body>
+</html>

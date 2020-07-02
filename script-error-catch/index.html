@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    window.$ = 0;
+    window.dataTimer = setTimeout(() => {
+      alert(123);
+    }, 3000);
+  </script>
+  <script onload="console.log(123);clearTimeout(window.dataTimer)" src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery123.js"></script>
+  <script>
+    console.log($);
+  </script>
+</body>
+</html>
